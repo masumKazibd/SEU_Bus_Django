@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ route.name }} - Schedule</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; background-color: #f4f7f6; }
+        .container { max-width: 700px; margin: 0 auto; }
+        h1 { color: #2c3e50; }
+        .back-btn { display: inline-block; margin-bottom: 20px; color: #007bff; text-decoration: none; font-weight: bold; }
+        table { width: 100%; border-collapse: collapse; background: white; margin-top: 15px; }
+        th, td { border: 1px solid #ddd; padding: 12px; text-align: center; }
+        th { background-color: #007bff; color: white; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <a href="{% url 'route_list' %}" class="back-btn">← সব রুটের তালিকায় ফিরে যান</a>
+    <h1>{{ route.name }}</h1>
+    <p style="color: #555;">{{ route.description }}</p>
+
+    <table>
+        <thead>
+            <tr>
+                <th>বাস নম্বর</th>
+                <th>সময়</th>
+                <th>টাইপ</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for schedule in route.schedules %}
+            <tr>
+                <td>{{ schedule.bus_no }}</td>
+                <td>{{ schedule.time }}</td>
+                <td>{{ schedule.direction }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

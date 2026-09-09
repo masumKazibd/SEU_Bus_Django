@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <title>SEU Bus Routes</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; background-color: #f4f7f6; }
+        h1 { color: #2c3e50; text-align: center; }
+        .route-container { display: flex; flex-direction: column; gap: 15px; max-width: 600px; margin: 20px auto; }
+        .route-card { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); text-decoration: none; color: #333; transition: 0.2s; }
+        .route-card:hover { transform: translateY(-3px); border-left: 5px solid #007bff; }
+        .route-title { margin: 0 0 8px 0; color: #007bff; }
+    </style>
+</head>
+<body>
+    <h1>SEU Bus Routes</h1>
+    <p style="text-align: center; color: #666;">শিডিউল দেখতে রুটের ওপর ক্লিক করুন:</p>
+
+    <div class="route-container">
+        {% for route in routes %}
+            <a href="{% url 'route_detail' route.id %}" class="route-card">
+                <h3 class="route-title">{{ route.name }}</h3>
+                <p style="margin: 0; color: #666;">{{ route.description }}</p>
+            </a>
+        {% endfor %}
+    </div>
+</body>
+</html>
