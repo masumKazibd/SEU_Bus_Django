@@ -6,8 +6,14 @@ ROUTES_DATA = [
         "name": "Route - 1",
         "description": "Mirpur 10 to Campus via Shewrapara & Kazipara",
         "schedules": [
-            {"bus_no": "Bus-01", "time": "07:30 AM", "direction": "Campus-bound"},
-            {"bus_no": "Bus-01", "time": "05:15 PM", "direction": "Return"},
+            {"Stopage": "Mirpur 1", "time": "07:10 AM", "direction": "Campus-bound"},
+            {"Stopage": "Mirpur 2", "time": "07:15 PM", "direction": "Campus-bound"},
+            {"Stopage": "Mirpur 10", "time": "07:25 PM", "direction": "Campus-bound"},
+            {"Stopage": "Kazipara", "time": "07:30 PM", "direction": "Campus-bound"},
+            {"Stopage": "Shewrapara", "time": "07:35 PM", "direction": "Campus-bound"},
+            {"Stopage": "Agargaon", "time": "07:40 PM", "direction": "Campus-bound"},
+            {"Stopage": "Mohakhali", "time": "07:45 PM", "direction": "Campus-bound"},
+            {"Stopage": "SEU", "time": "07:55 PM", "direction": "Campus-bound"},
         ]
     },
     {
@@ -15,8 +21,8 @@ ROUTES_DATA = [
         "name": "Route - 2",
         "description": "Uttara House Building to Campus via Airport & Khilkhet",
         "schedules": [
-            {"bus_no": "Bus-02", "time": "07:45 AM", "direction": "Campus-bound"},
-            {"bus_no": "Bus-02", "time": "05:15 PM", "direction": "Return"},
+            {"Stopage": "Bus-02", "time": "07:45 AM", "direction": "Campus-bound"},
+            {"Stopage": "Bus-02", "time": "05:15 PM", "direction": "Campus-bound"},
         ]
     },
     {
@@ -24,8 +30,8 @@ ROUTES_DATA = [
         "name": "Route - 3",
         "description": "Dhanmondi 32 to Campus via Science Lab & Farmgate",
         "schedules": [
-            {"bus_no": "Bus-03", "time": "08:00 AM", "direction": "Campus-bound"},
-            {"bus_no": "Bus-03", "time": "05:30 PM", "direction": "Return"},
+            {"Stopage": "Bus-03", "time": "08:00 AM", "direction": "Campus-bound"},
+            {"Stopage": "Bus-03", "time": "05:30 PM", "direction": "Campus-bound"},
         ]
     },
     {
@@ -33,8 +39,8 @@ ROUTES_DATA = [
         "name": "Route - 4",
         "description": "Gulshan to Campus via R/A & Banani",
         "schedules": [
-            {"bus_no": "Bus-04", "time": "08:15 AM", "direction": "Campus-bound"},
-            {"bus_no": "Bus-04", "time": "05:45 PM", "direction": "Return"},
+            {"Stopage": "Bus-04", "time": "08:15 AM", "direction": "Campus-bound"},
+            {"Stopage": "Bus-04", "time": "05:45 PM", "direction": "Campus-bound"},
         ]
     },
     {
@@ -42,8 +48,8 @@ ROUTES_DATA = [
         "name": "Route - 5",
         "description": "Dhanmondi 32 to Campus via Science Lab & Farmgate",
         "schedules": [
-            {"bus_no": "Bus-03", "time": "08:00 AM", "direction": "Campus-bound"},
-            {"bus_no": "Bus-03", "time": "05:30 PM", "direction": "Return"},
+            {"Stopage": "Bus-03", "time": "08:00 AM", "direction": "Campus-bound"},
+            {"Stopage": "Bus-03", "time": "05:30 PM", "direction": "Campus-bound"},
         ]
     },
 ]

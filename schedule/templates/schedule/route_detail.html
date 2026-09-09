@@ -22,15 +22,15 @@
     <table>
         <thead>
             <tr>
-                <th>বাস নম্বর</th>
-                <th>সময়</th>
+                <th>Stopage</th>
+                <th>সময়</th>
                 <th>টাইপ</th>
             </tr>
         </thead>
         <tbody>
             {% for schedule in route.schedules %}
             <tr>
-                <td>{{ schedule.bus_no }}</td>
+                <td>{{ schedule.Stopage }}</td>
                 <td>{{ schedule.time }}</td>
                 <td>{{ schedule.direction }}</td>
             </tr>
