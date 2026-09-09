@@ -1,66 +1,45 @@
-from django.shortcuts import render, Http404
- 
-ROUTES_DATA = [
-    {
-        "id": 1,
-        "name": "Route - 1",
-        "description": "Mirpur 10 to Campus via Shewrapara & Kazipara",
-        "schedules": [
-            {"Stopage": "Mirpur 1", "time": "07:10 AM", "direction": "Campus-bound"},
-            {"Stopage": "Mirpur 2", "time": "07:15 PM", "direction": "Campus-bound"},
-            {"Stopage": "Mirpur 10", "time": "07:25 PM", "direction": "Campus-bound"},
-            {"Stopage": "Kazipara", "time": "07:30 PM", "direction": "Campus-bound"},
-            {"Stopage": "Shewrapara", "time": "07:35 PM", "direction": "Campus-bound"},
-            {"Stopage": "Agargaon", "time": "07:40 PM", "direction": "Campus-bound"},
-            {"Stopage": "Mohakhali", "time": "07:45 PM", "direction": "Campus-bound"},
-            {"Stopage": "SEU", "time": "07:55 PM", "direction": "Campus-bound"},
-        ]
-    },
-    {
-        "id": 2,
-        "name": "Route - 2",
-        "description": "Uttara House Building to Campus via Airport & Khilkhet",
-        "schedules": [
-            {"Stopage": "Bus-02", "time": "07:45 AM", "direction": "Campus-bound"},
-            {"Stopage": "Bus-02", "time": "05:15 PM", "direction": "Campus-bound"},
-        ]
-    },
-    {
-        "id": 3,
-        "name": "Route - 3",
-        "description": "Dhanmondi 32 to Campus via Science Lab & Farmgate",
-        "schedules": [
-            {"Stopage": "Bus-03", "time": "08:00 AM", "direction": "Campus-bound"},
-            {"Stopage": "Bus-03", "time": "05:30 PM", "direction": "Campus-bound"},
-        ]
-    },
-    {
-        "id": 4,
-        "name": "Route - 4",
-        "description": "Gulshan to Campus via R/A & Banani",
-        "schedules": [
-            {"Stopage": "Bus-04", "time": "08:15 AM", "direction": "Campus-bound"},
-            {"Stopage": "Bus-04", "time": "05:45 PM", "direction": "Campus-bound"},
-        ]
-    },
-    {
-        "id": 5,
-        "name": "Route - 5",
-        "description": "Dhanmondi 32 to Campus via Science Lab & Farmgate",
-        "schedules": [
-            {"Stopage": "Bus-03", "time": "08:00 AM", "direction": "Campus-bound"},
-            {"Stopage": "Bus-03", "time": "05:30 PM", "direction": "Campus-bound"},
-        ]
-    },
-]
+from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm  # <--- AuthenticationForm যুক্ত করুন
+from django.contrib.auth import login, logout
+from django.contrib.auth.decorators import login_required
+from .models import Route
 
 # all route list
 def route_list(request):
-    return render(request, 'schedule/route_list.html', {'routes': ROUTES_DATA})
+    routes = Route.objects.all()
+    return render(request, 'schedule/route_list.html', {'routes': routes})
 
 # route detail view
 def route_detail(request, route_id):
-    route = next((r for r in ROUTES_DATA if r["id"] == route_id), None)
-    if route is None:
-        raise Http404("Route not found!")
+    route = get_object_or_404(Route, id=route_id)
     return render(request, 'schedule/route_detail.html', {'route': route})
+
+# (Sign Up) View
+def register_view(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user) # অ্যাকাউন্ট তৈরির পরেই অটোমেটিক লগইন করিয়ে দেবে
+            return redirect('route_list')
+    else:
+        form = UserCreationForm()
+    return render(request, 'schedule/register.html', {'form': form})
+
+# (Log In) View
+def login_view(request):
+    if request.method == 'POST':
+        form = AuthenticationForm(data=request.POST)
+        if form.is_valid():
+            user = form.get_user()
+            login(request, user)
+            return redirect('route_list')
+    else:
+        form = AuthenticationForm()
+    return render(request, 'schedule/login.html', {'form': form})
+
+# (Log Out) View
+def logout_view(request):
+    if request.method == 'POST':
+        logout(request)
+        return redirect('route_list')

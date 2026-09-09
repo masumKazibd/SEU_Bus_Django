@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}SEU Bus Portal{% endblock %}</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; background-color: #f4f7f6; color: #333; }
+        
+        /* Navbar Style */
+        .navbar { background-color: #2c3e50; padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .navbar a.brand { color: #fff; text-decoration: none; font-size: 20px; font-weight: bold; }
+        .nav-links { display: flex; gap: 15px; align-items: center; }
+        .nav-links a { color: #ecf0f1; text-decoration: none; font-weight: 500; transition: 0.2s; }
+        .nav-links a:hover { color: #3498db; }
+        .btn-register { background-color: #3498db; padding: 7px 15px; border-radius: 4px; color: white !important; }
+        .btn-logout { background-color: #e74c3c; border: none; color: white; padding: 7px 15px; border-radius: 4px; cursor: pointer; font-size: 14px; }
+        
+        /* Main Container */
+        .main-container { padding: 30px; max-width: 900px; margin: 0 auto; }
+    </style>
+</head>
+<body>
+
+    <!-- Common Navbar -->
+    <nav class="navbar">
+        <a href="{% url 'route_list' %}" class="brand">🚌 SEU Bus Portal</a>
+        <div class="nav-links">
+            <a href="{% url 'route_list' %}">Routes</a>
+            
+            {% if user.is_authenticated %}
+                <span style="color: #f1c40f;">👤 {{ user.username }}</span>
+                <form action="{% url 'logout' %}" method="POST" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="btn-logout">Logout</button>
+                </form>
+            {% else %}
+                <a href="{% url 'login' %}">Login</a>
+                <a href="{% url 'register' %}" class="btn-register">Register</a>
+            {% endif %}
+        </div>
+    </nav>
+
+    <!-- Content Section -->
+    <div class="main-container">
+        {% block content %}
+        <!-- অন্য পেজের কোড এখানে অটোমেটিক লোড হবে -->
+        {% endblock %}
+    </div>
+
+</body>
+</html>
