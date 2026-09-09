@@ -75,8 +75,12 @@ WSGI_APPLICATION = 'seubus.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'seubus_db',          # your PostgreSQL database name
+        'USER': 'postgres',           # your PostgreSQL user name
+        'PASSWORD': 'masum123',   # your PostgreSQL database password
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 
